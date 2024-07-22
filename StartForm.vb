@@ -1,8 +1,15 @@
-﻿Imports Infragistics.Win.UltraWinGrid
+﻿Imports System.Collections.Specialized.BitVector32
+Imports System.IO
+Imports Infragistics.Win.UltraWinGrid
+Imports WinSCP
 
 Public Class StartForm
     Dim INIPath As String = Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments).Trim & "\Abacus\abacus.ini"
     Dim ConnectionSting As String = "Data Source=~DATASOURCE~;Initial Catalog=~INITIALCATALOG~;User ID=~USER~;Password=~PASSWORD~;TrustServerCertificate=True"
+    Dim _HostName As String = "ftp.canella.vr.it"
+    Dim _UserName As String = "1632033@aruba.it"
+    Dim _Password As String = "Arubolina2021"
+    Dim VersioneAggiornata As Boolean = False
     Public Sub New()
 
         ' La chiamata è richiesta dalla finestra di progettazione.
@@ -60,16 +67,98 @@ Public Class StartForm
             End If
         Next
 
-
     End Sub
-
+    Dim versione As String = ""
+    Dim versioneOL As String = "0"
+    Dim AbacusExePath As String = ""
     Private Sub ngrdVersionStart_ClickCellButton(sender As Object, e As CellEventArgs) Handles ngrdVersionStart.ClickCellButton
+
+        AbacusExePath = e.Cell.Row.Cells("TverExePath").Text.Trim
+
+        If Not VersioneAggiornata Then
+            If e.Cell.Row.Cells("TverVersionPath").Text.Trim.Length > 0 Then
+                If System.IO.File.Exists(e.Cell.Row.Cells("TverVersionPath").Text.Trim) Then
+                    ScaricaVersione()
+                    versione = System.IO.File.ReadAllText(e.Cell.Row.Cells("TverVersionPath").Text.Trim)
+                    If CInt(versioneOL) > CInt(versione) Then
+                        Me.Text = "downloading new version " & versioneOL & "......"
+                        ScaricaAggiornamento()
+                        Me.Text = ""
+                    Else
+                        Me.Text = "local version is up to date starting ABACUS......"
+                        VersioneAggiornata = True
+                    End If
+                End If
+            End If
+        End If
+
         System.IO.File.Copy(e.Cell.Row.Cells("TverIniPath").Text.Trim & "\Abacus.ini", Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments).Trim & "\Abacus\Abacus.ini", True)
 
-        Process.Start(e.Cell.Row.Cells("TverExePath").Text)
+        Process.Start(AbacusExePath)
+
+        Me.Text = "Abacus " & versioneOL.Substring(0, 1) & "." & versioneOL.Substring(1, 2) & "." & versioneOL.Substring(3)
     End Sub
 
-    Private Sub btnChiusura_Click(sender As Object, e As EventArgs) Handles btnChiusura.Click
-        Me.Close()
+    Dim exeFTP As String = ""
+    Private Sub ScaricaVersione()
+
+        If IO.File.Exists(Application.StartupPath & "\External\WinSCP.exe") Then
+            exeFTP = Application.StartupPath & "\External\WinSCP.exe"
+        Else
+            If IO.File.Exists(Application.StartupPath.Replace("bin\Debug", "Resources") & "\WinSCP.exe") Then
+                exeFTP = Application.StartupPath.Replace("bin\Debug", "Resources") & "\WinSCP.exe"
+            Else
+                versioneOL = 0
+                Exit Sub
+            End If
+        End If
+        Dim SessionOptions As SessionOptions = New SessionOptions
+        With SessionOptions
+            .Protocol = Protocol.Ftp
+            .HostName = _HostName
+            .UserName = _UserName
+            .Password = _Password
+        End With
+        Try
+            Using session As Session = New Session()
+                session.ExecutablePath = exeFTP
+
+                session.Open(SessionOptions)
+
+                Dim strFileStream As Stream = session.GetFile("/canella.vr.it/Deposito/AB_NEW/Versione.txt")
+                Dim srFile As StreamReader = New StreamReader(strFileStream)
+                versioneOL = srFile.ReadToEnd()
+
+            End Using
+
+        Catch ex As Exception
+            MsgBox("file versione non trovato")
+        End Try
+
+    End Sub
+    Dim AbacusExeFolder As String = ""
+    Private Sub ScaricaAggiornamento()
+
+        AbacusExeFolder = AbacusExePath.Substring(0, AbacusExePath.LastIndexOf("\"))
+        Dim SessionOptions As SessionOptions = New SessionOptions
+        With SessionOptions
+            .Protocol = Protocol.Ftp
+            .HostName = _HostName
+            .UserName = _UserName
+            .Password = _Password
+        End With
+        Try
+            Using session As Session = New Session()
+                session.ExecutablePath = exeFTP
+
+                session.Open(SessionOptions)
+
+                session.GetFiles("/canella.vr.it/Deposito/AB_NEW/*", AbacusExeFolder & "\*").Check()
+            End Using
+        Catch ex As Exception
+            MsgBox("aggiornamento non riuscito")
+        End Try
+
+
     End Sub
 End Class

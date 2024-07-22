@@ -24,15 +24,15 @@ Partial Class StartForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim UltraGridBand1 As Infragistics.Win.UltraWinGrid.UltraGridBand = New Infragistics.Win.UltraWinGrid.UltraGridBand("TtmExeVer", -1)
-        Dim UltraGridColumn19 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverCod_Id")
-        Dim UltraGridColumn20 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverDes")
-        Dim UltraGridColumn21 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverIniPath")
-        Dim UltraGridColumn22 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverAttivo")
-        Dim UltraGridColumn23 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverExePath")
-        Dim UltraGridColumn24 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertDate")
-        Dim UltraGridColumn25 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertUser")
-        Dim UltraGridColumn26 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateDate")
-        Dim UltraGridColumn27 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateUser")
+        Dim UltraGridColumn28 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverCod_Id")
+        Dim UltraGridColumn29 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverDes")
+        Dim UltraGridColumn30 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverIniPath")
+        Dim UltraGridColumn31 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverAttivo")
+        Dim UltraGridColumn32 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverExePath")
+        Dim UltraGridColumn33 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertDate")
+        Dim UltraGridColumn34 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertUser")
+        Dim UltraGridColumn35 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateDate")
+        Dim UltraGridColumn36 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateUser")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StartForm))
         Me.ngrdVersionStart = New Infragistics.Win.UltraWinGrid.UltraGrid()
         Me.btnChiusura = New Infragistics.Win.Misc.UltraButton()
@@ -56,16 +56,16 @@ Partial Class StartForm
         'ngrdVersionStart
         '
         Me.ngrdVersionStart.DataSource = Me.TtmExeVerBindingSource
-        UltraGridColumn19.Header.VisiblePosition = 0
-        UltraGridColumn20.Header.VisiblePosition = 1
-        UltraGridColumn21.Header.VisiblePosition = 2
-        UltraGridColumn22.Header.VisiblePosition = 3
-        UltraGridColumn23.Header.VisiblePosition = 4
-        UltraGridColumn24.Header.VisiblePosition = 5
-        UltraGridColumn25.Header.VisiblePosition = 6
-        UltraGridColumn26.Header.VisiblePosition = 7
-        UltraGridColumn27.Header.VisiblePosition = 8
-        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn19, UltraGridColumn20, UltraGridColumn21, UltraGridColumn22, UltraGridColumn23, UltraGridColumn24, UltraGridColumn25, UltraGridColumn26, UltraGridColumn27})
+        UltraGridColumn28.Header.VisiblePosition = 0
+        UltraGridColumn29.Header.VisiblePosition = 1
+        UltraGridColumn30.Header.VisiblePosition = 2
+        UltraGridColumn31.Header.VisiblePosition = 3
+        UltraGridColumn32.Header.VisiblePosition = 4
+        UltraGridColumn33.Header.VisiblePosition = 5
+        UltraGridColumn34.Header.VisiblePosition = 6
+        UltraGridColumn35.Header.VisiblePosition = 7
+        UltraGridColumn36.Header.VisiblePosition = 8
+        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn28, UltraGridColumn29, UltraGridColumn30, UltraGridColumn31, UltraGridColumn32, UltraGridColumn33, UltraGridColumn34, UltraGridColumn35, UltraGridColumn36})
         Me.ngrdVersionStart.DisplayLayout.BandsSerializer.Add(UltraGridBand1)
         Me.ngrdVersionStart.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ngrdVersionStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -113,6 +113,7 @@ Partial Class StartForm
         '
         'UltraGroupBox1
         '
+        Me.UltraGroupBox1.BorderStyle = Infragistics.Win.Misc.GroupBoxBorderStyle.HeaderSolid
         Me.UltraGroupBox1.Controls.Add(Me.UltraPanel1)
         Me.UltraGroupBox1.Controls.Add(Me.UltraPanel2)
         Me.UltraGroupBox1.Dock = System.Windows.Forms.DockStyle.Fill

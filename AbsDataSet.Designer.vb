@@ -285,13 +285,15 @@ Partial Public Class AbsDataSet
         
         Private columnTverCod_Id As Global.System.Data.DataColumn
         
+        Private columnTverAttivo As Global.System.Data.DataColumn
+        
         Private columnTverDes As Global.System.Data.DataColumn
         
         Private columnTverIniPath As Global.System.Data.DataColumn
         
-        Private columnTverAttivo As Global.System.Data.DataColumn
-        
         Private columnTverExePath As Global.System.Data.DataColumn
+        
+        Private columnTverVersionPath As Global.System.Data.DataColumn
         
         Private columnTverInsertDate As Global.System.Data.DataColumn
         
@@ -346,6 +348,14 @@ Partial Public Class AbsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property TverAttivoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTverAttivo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public ReadOnly Property TverDesColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTverDes
@@ -362,17 +372,17 @@ Partial Public Class AbsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property TverAttivoColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property TverExePathColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnTverAttivo
+                Return Me.columnTverExePath
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property TverExePathColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property TverVersionPathColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnTverExePath
+                Return Me.columnTverVersionPath
             End Get
         End Property
         
@@ -445,9 +455,9 @@ Partial Public Class AbsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddTtmExeVerRow(ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverAttivo As Boolean, ByVal TverExePath As String, ByVal TverInsertDate As Date, ByVal TverInsertUser As String, ByVal TverUpdateDate As Date, ByVal TverUpdateUser As String) As TtmExeVerRow
+        Public Overloads Function AddTtmExeVerRow(ByVal TverAttivo As Boolean, ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverExePath As String, ByVal TverVersionPath As String, ByVal TverInsertDate As Date, ByVal TverInsertUser As String, ByVal TverUpdateDate As Date, ByVal TverUpdateUser As String) As TtmExeVerRow
             Dim rowTtmExeVerRow As TtmExeVerRow = CType(Me.NewRow,TtmExeVerRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, TverDes, TverIniPath, TverAttivo, TverExePath, TverInsertDate, TverInsertUser, TverUpdateDate, TverUpdateUser}
+            Dim columnValuesArray() As Object = New Object() {Nothing, TverAttivo, TverDes, TverIniPath, TverExePath, TverVersionPath, TverInsertDate, TverInsertUser, TverUpdateDate, TverUpdateUser}
             rowTtmExeVerRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowTtmExeVerRow)
             Return rowTtmExeVerRow
@@ -477,10 +487,11 @@ Partial Public Class AbsDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Friend Sub InitVars()
             Me.columnTverCod_Id = MyBase.Columns("TverCod_Id")
+            Me.columnTverAttivo = MyBase.Columns("TverAttivo")
             Me.columnTverDes = MyBase.Columns("TverDes")
             Me.columnTverIniPath = MyBase.Columns("TverIniPath")
-            Me.columnTverAttivo = MyBase.Columns("TverAttivo")
             Me.columnTverExePath = MyBase.Columns("TverExePath")
+            Me.columnTverVersionPath = MyBase.Columns("TverVersionPath")
             Me.columnTverInsertDate = MyBase.Columns("TverInsertDate")
             Me.columnTverInsertUser = MyBase.Columns("TverInsertUser")
             Me.columnTverUpdateDate = MyBase.Columns("TverUpdateDate")
@@ -492,14 +503,16 @@ Partial Public Class AbsDataSet
         Private Sub InitClass()
             Me.columnTverCod_Id = New Global.System.Data.DataColumn("TverCod_Id", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTverCod_Id)
+            Me.columnTverAttivo = New Global.System.Data.DataColumn("TverAttivo", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTverAttivo)
             Me.columnTverDes = New Global.System.Data.DataColumn("TverDes", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTverDes)
             Me.columnTverIniPath = New Global.System.Data.DataColumn("TverIniPath", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTverIniPath)
-            Me.columnTverAttivo = New Global.System.Data.DataColumn("TverAttivo", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTverAttivo)
             Me.columnTverExePath = New Global.System.Data.DataColumn("TverExePath", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTverExePath)
+            Me.columnTverVersionPath = New Global.System.Data.DataColumn("TverVersionPath", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTverVersionPath)
             Me.columnTverInsertDate = New Global.System.Data.DataColumn("TverInsertDate", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTverInsertDate)
             Me.columnTverInsertUser = New Global.System.Data.DataColumn("TverInsertUser", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -515,9 +528,10 @@ Partial Public Class AbsDataSet
             Me.columnTverCod_Id.AllowDBNull = false
             Me.columnTverCod_Id.ReadOnly = true
             Me.columnTverCod_Id.Unique = true
-            Me.columnTverDes.MaxLength = 50
+            Me.columnTverDes.MaxLength = 100
             Me.columnTverIniPath.MaxLength = 500
             Me.columnTverExePath.MaxLength = 500
+            Me.columnTverVersionPath.MaxLength = 500
             Me.columnTverInsertUser.MaxLength = 50
             Me.columnTverUpdateUser.MaxLength = 50
         End Sub
@@ -677,6 +691,21 @@ Partial Public Class AbsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property TverAttivo() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableTtmExeVer.TverAttivoColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'TverAttivo' nella tabella 'TtmExeVer' è DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTtmExeVer.TverAttivoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property TverDes() As String
             Get
                 Try 
@@ -707,21 +736,6 @@ Partial Public Class AbsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property TverAttivo() As Boolean
-            Get
-                Try 
-                    Return CType(Me(Me.tableTtmExeVer.TverAttivoColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'TverAttivo' nella tabella 'TtmExeVer' è DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableTtmExeVer.TverAttivoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property TverExePath() As String
             Get
                 Try 
@@ -732,6 +746,21 @@ Partial Public Class AbsDataSet
             End Get
             Set
                 Me(Me.tableTtmExeVer.TverExePathColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property TverVersionPath() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableTtmExeVer.TverVersionPathColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Il valore della colonna 'TverVersionPath' nella tabella 'TtmExeVer' è DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTtmExeVer.TverVersionPathColumn) = value
             End Set
         End Property
         
@@ -797,6 +826,18 @@ Partial Public Class AbsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsTverAttivoNull() As Boolean
+            Return Me.IsNull(Me.tableTtmExeVer.TverAttivoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetTverAttivoNull()
+            Me(Me.tableTtmExeVer.TverAttivoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsTverDesNull() As Boolean
             Return Me.IsNull(Me.tableTtmExeVer.TverDesColumn)
         End Function
@@ -821,18 +862,6 @@ Partial Public Class AbsDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsTverAttivoNull() As Boolean
-            Return Me.IsNull(Me.tableTtmExeVer.TverAttivoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetTverAttivoNull()
-            Me(Me.tableTtmExeVer.TverAttivoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsTverExePathNull() As Boolean
             Return Me.IsNull(Me.tableTtmExeVer.TverExePathColumn)
         End Function
@@ -841,6 +870,18 @@ Partial Public Class AbsDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetTverExePathNull()
             Me(Me.tableTtmExeVer.TverExePathColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsTverVersionPathNull() As Boolean
+            Return Me.IsNull(Me.tableTtmExeVer.TverVersionPathColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetTverVersionPathNull()
+            Me(Me.tableTtmExeVer.TverVersionPathColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1059,10 +1100,11 @@ Namespace AbsDataSetTableAdapters
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "TtmExeVer"
             tableMapping.ColumnMappings.Add("TverCod_Id", "TverCod_Id")
+            tableMapping.ColumnMappings.Add("TverAttivo", "TverAttivo")
             tableMapping.ColumnMappings.Add("TverDes", "TverDes")
             tableMapping.ColumnMappings.Add("TverIniPath", "TverIniPath")
-            tableMapping.ColumnMappings.Add("TverAttivo", "TverAttivo")
             tableMapping.ColumnMappings.Add("TverExePath", "TverExePath")
+            tableMapping.ColumnMappings.Add("TverVersionPath", "TverVersionPath")
             tableMapping.ColumnMappings.Add("TverInsertDate", "TverInsertDate")
             tableMapping.ColumnMappings.Add("TverInsertUser", "TverInsertUser")
             tableMapping.ColumnMappings.Add("TverUpdateDate", "TverUpdateDate")
@@ -1079,10 +1121,11 @@ Namespace AbsDataSetTableAdapters
             Me._adapter.InsertCommand.CommandText = "dbo.TtmExeVer_InsertCommand"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.StoredProcedure
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RETURN_VALUE", Global.System.Data.SqlDbType.[Variant], 0, Global.System.Data.ParameterDirection.ReturnValue, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverAttivo", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverAttivo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverDes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverDes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverIniPath", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverIniPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverAttivo", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverAttivo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverExePath", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverExePath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverVersionPath", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverVersionPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverInsertDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverInsertDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverInsertUser", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverInsertUser", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverUpdateDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverUpdateDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -1092,10 +1135,11 @@ Namespace AbsDataSetTableAdapters
             Me._adapter.UpdateCommand.CommandText = "dbo.TtmExeVer_UpdateCommand"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.StoredProcedure
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@RETURN_VALUE", Global.System.Data.SqlDbType.[Variant], 0, Global.System.Data.ParameterDirection.ReturnValue, 0, 0, Nothing, Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverAttivo", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverAttivo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverDes", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverDes", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverIniPath", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverIniPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverAttivo", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverAttivo", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverExePath", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverExePath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverVersionPath", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverVersionPath", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverInsertDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverInsertDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverInsertUser", Global.System.Data.SqlDbType.VarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverInsertUser", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@TverUpdateDate", Global.System.Data.SqlDbType.DateTime, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "TverUpdateDate", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -1199,46 +1243,51 @@ Namespace AbsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverAttivo As Global.System.Nullable(Of Boolean), ByVal TverExePath As String, ByVal TverInsertDate As Global.System.Nullable(Of Date), ByVal TverInsertUser As String, ByVal TverUpdateDate As Global.System.Nullable(Of Date), ByVal TverUpdateUser As String) As Integer
-            If (TverDes Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
+        Public Overloads Overridable Function Insert(ByVal TverAttivo As Global.System.Nullable(Of Boolean), ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverExePath As String, ByVal TverVersionPath As String, ByVal TverInsertDate As Global.System.Nullable(Of Date), ByVal TverInsertUser As String, ByVal TverUpdateDate As Global.System.Nullable(Of Date), ByVal TverUpdateUser As String) As Integer
+            If (TverAttivo.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(TverAttivo.Value,Boolean)
             Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(TverDes,String)
+                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (TverIniPath Is Nothing) Then
+            If (TverDes Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(TverIniPath,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(TverDes,String)
             End If
-            If (TverAttivo.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(TverAttivo.Value,Boolean)
-            Else
+            If (TverIniPath Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(TverIniPath,String)
             End If
             If (TverExePath Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.InsertCommand.Parameters(4).Value = CType(TverExePath,String)
             End If
-            If (TverInsertDate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(TverInsertDate.Value,Date)
-            Else
+            If (TverVersionPath Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(TverVersionPath,String)
+            End If
+            If (TverInsertDate.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(TverInsertDate.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
             If (TverInsertUser Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(TverInsertUser,String)
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(TverInsertUser,String)
             End If
             If (TverUpdateDate.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(TverUpdateDate.Value,Date)
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(TverUpdateDate.Value,Date)
             Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
             If (TverUpdateUser Is Nothing) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(TverUpdateUser,String)
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(TverUpdateUser,String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
             If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
@@ -1259,49 +1308,54 @@ Namespace AbsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverAttivo As Global.System.Nullable(Of Boolean), ByVal TverExePath As String, ByVal TverInsertDate As Global.System.Nullable(Of Date), ByVal TverInsertUser As String, ByVal TverUpdateDate As Global.System.Nullable(Of Date), ByVal TverUpdateUser As String, ByVal Original_TverCod_Id As Integer, ByVal TverCod_Id As Integer) As Integer
-            If (TverDes Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+        Public Overloads Overridable Function Update(ByVal TverAttivo As Global.System.Nullable(Of Boolean), ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverExePath As String, ByVal TverVersionPath As String, ByVal TverInsertDate As Global.System.Nullable(Of Date), ByVal TverInsertUser As String, ByVal TverUpdateDate As Global.System.Nullable(Of Date), ByVal TverUpdateUser As String, ByVal Original_TverCod_Id As Integer, ByVal TverCod_Id As Integer) As Integer
+            If (TverAttivo.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(TverAttivo.Value,Boolean)
             Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(TverDes,String)
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (TverIniPath Is Nothing) Then
+            If (TverDes Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(TverIniPath,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(TverDes,String)
             End If
-            If (TverAttivo.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(TverAttivo.Value,Boolean)
-            Else
+            If (TverIniPath Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(TverIniPath,String)
             End If
             If (TverExePath Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
                 Me.Adapter.UpdateCommand.Parameters(4).Value = CType(TverExePath,String)
             End If
-            If (TverInsertDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(TverInsertDate.Value,Date)
-            Else
+            If (TverVersionPath Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(TverVersionPath,String)
+            End If
+            If (TverInsertDate.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(TverInsertDate.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
             If (TverInsertUser Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(TverInsertUser,String)
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(TverInsertUser,String)
             End If
             If (TverUpdateDate.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(TverUpdateDate.Value,Date)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(TverUpdateDate.Value,Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             End If
             If (TverUpdateUser Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(TverUpdateUser,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(TverUpdateUser,String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Original_TverCod_Id,Integer)
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(TverCod_Id,Integer)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_TverCod_Id,Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(TverCod_Id,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -1321,8 +1375,8 @@ Namespace AbsDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverAttivo As Global.System.Nullable(Of Boolean), ByVal TverExePath As String, ByVal TverInsertDate As Global.System.Nullable(Of Date), ByVal TverInsertUser As String, ByVal TverUpdateDate As Global.System.Nullable(Of Date), ByVal TverUpdateUser As String, ByVal Original_TverCod_Id As Integer) As Integer
-            Return Me.Update(TverDes, TverIniPath, TverAttivo, TverExePath, TverInsertDate, TverInsertUser, TverUpdateDate, TverUpdateUser, Original_TverCod_Id, Original_TverCod_Id)
+        Public Overloads Overridable Function Update(ByVal TverAttivo As Global.System.Nullable(Of Boolean), ByVal TverDes As String, ByVal TverIniPath As String, ByVal TverExePath As String, ByVal TverVersionPath As String, ByVal TverInsertDate As Global.System.Nullable(Of Date), ByVal TverInsertUser As String, ByVal TverUpdateDate As Global.System.Nullable(Of Date), ByVal TverUpdateUser As String, ByVal Original_TverCod_Id As Integer) As Integer
+            Return Me.Update(TverAttivo, TverDes, TverIniPath, TverExePath, TverVersionPath, TverInsertDate, TverInsertUser, TverUpdateDate, TverUpdateUser, Original_TverCod_Id, Original_TverCod_Id)
         End Function
     End Class
     
