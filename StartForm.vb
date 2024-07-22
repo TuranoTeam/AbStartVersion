@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Specialized.BitVector32
+Imports System.Data.SqlClient
 Imports System.IO
 Imports Infragistics.Win.UltraWinGrid
 Imports WinSCP
@@ -83,7 +84,7 @@ Public Class StartForm
                     If CInt(versioneOL) > CInt(versione) Then
                         Me.Text = "downloading new version " & versioneOL & "......"
                         ScaricaAggiornamento()
-                        Me.Text = ""
+                        AggiornaVersioneAziende()
                     Else
                         Me.Text = "local version is up to date starting ABACUS......"
                         VersioneAggiornata = True
@@ -100,6 +101,16 @@ Public Class StartForm
     End Sub
 
     Dim exeFTP As String = ""
+    Private Sub AggiornaVersioneAziende()
+
+        Dim queryString As String = "update tbaaziende set DaziSmsID =" & CInt(versioneOL) & ";"
+        Dim connection As New SqlClient.SqlConnection(ConnectionSting)
+        Dim command As New SqlCommand(queryString, connection)
+        connection.Open()
+        command.ExecuteNonQuery()
+        connection.Close()
+
+    End Sub
     Private Sub ScaricaVersione()
 
         If IO.File.Exists(Application.StartupPath & "\External\WinSCP.exe") Then

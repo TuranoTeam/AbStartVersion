@@ -25,55 +25,67 @@ Partial Class StartForm
         Me.components = New System.ComponentModel.Container()
         Dim UltraGridBand1 As Infragistics.Win.UltraWinGrid.UltraGridBand = New Infragistics.Win.UltraWinGrid.UltraGridBand("TtmExeVer", -1)
         Dim UltraGridColumn28 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverCod_Id")
+        Dim UltraGridColumn31 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverAttivo")
         Dim UltraGridColumn29 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverDes")
         Dim UltraGridColumn30 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverIniPath")
-        Dim UltraGridColumn31 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverAttivo")
         Dim UltraGridColumn32 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverExePath")
+        Dim UltraGridColumn1 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverVersionPath")
         Dim UltraGridColumn33 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertDate")
         Dim UltraGridColumn34 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertUser")
         Dim UltraGridColumn35 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateDate")
         Dim UltraGridColumn36 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateUser")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StartForm))
         Me.ngrdVersionStart = New Infragistics.Win.UltraWinGrid.UltraGrid()
+        Me.TtmExeVerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.AbsDataSet = New AbStart.AbsDataSet()
         Me.btnChiusura = New Infragistics.Win.Misc.UltraButton()
         Me.UltraPanel1 = New Infragistics.Win.Misc.UltraPanel()
         Me.UltraPanel2 = New Infragistics.Win.Misc.UltraPanel()
         Me.UltraGroupBox1 = New Infragistics.Win.Misc.UltraGroupBox()
-        Me.TtmExeVerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.AbsDataSet = New AbStart.AbsDataSet()
         Me.TtmExeVerTableAdapter = New AbStart.AbsDataSetTableAdapters.TtmExeVerTableAdapter()
         CType(Me.ngrdVersionStart, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.UltraPanel1.ClientArea.SuspendLayout()
         Me.UltraPanel1.SuspendLayout()
         Me.UltraPanel2.ClientArea.SuspendLayout()
         Me.UltraPanel2.SuspendLayout()
         CType(Me.UltraGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.UltraGroupBox1.SuspendLayout()
-        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ngrdVersionStart
         '
         Me.ngrdVersionStart.DataSource = Me.TtmExeVerBindingSource
         UltraGridColumn28.Header.VisiblePosition = 0
+        UltraGridColumn31.Header.VisiblePosition = 3
         UltraGridColumn29.Header.VisiblePosition = 1
         UltraGridColumn30.Header.VisiblePosition = 2
-        UltraGridColumn31.Header.VisiblePosition = 3
         UltraGridColumn32.Header.VisiblePosition = 4
-        UltraGridColumn33.Header.VisiblePosition = 5
-        UltraGridColumn34.Header.VisiblePosition = 6
-        UltraGridColumn35.Header.VisiblePosition = 7
-        UltraGridColumn36.Header.VisiblePosition = 8
-        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn28, UltraGridColumn29, UltraGridColumn30, UltraGridColumn31, UltraGridColumn32, UltraGridColumn33, UltraGridColumn34, UltraGridColumn35, UltraGridColumn36})
+        UltraGridColumn1.Header.VisiblePosition = 5
+        UltraGridColumn33.Header.VisiblePosition = 6
+        UltraGridColumn34.Header.VisiblePosition = 7
+        UltraGridColumn35.Header.VisiblePosition = 8
+        UltraGridColumn36.Header.VisiblePosition = 9
+        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn28, UltraGridColumn31, UltraGridColumn29, UltraGridColumn30, UltraGridColumn32, UltraGridColumn1, UltraGridColumn33, UltraGridColumn34, UltraGridColumn35, UltraGridColumn36})
         Me.ngrdVersionStart.DisplayLayout.BandsSerializer.Add(UltraGridBand1)
         Me.ngrdVersionStart.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ngrdVersionStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ngrdVersionStart.Location = New System.Drawing.Point(0, 0)
         Me.ngrdVersionStart.Name = "ngrdVersionStart"
-        Me.ngrdVersionStart.Size = New System.Drawing.Size(438, 331)
+        Me.ngrdVersionStart.Size = New System.Drawing.Size(442, 333)
         Me.ngrdVersionStart.TabIndex = 0
         Me.ngrdVersionStart.Text = "ngrdVersionStart"
+        '
+        'TtmExeVerBindingSource
+        '
+        Me.TtmExeVerBindingSource.DataMember = "TtmExeVer"
+        Me.TtmExeVerBindingSource.DataSource = Me.AbsDataSet
+        '
+        'AbsDataSet
+        '
+        Me.AbsDataSet.DataSetName = "AbsDataSet"
+        Me.AbsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'btnChiusura
         '
@@ -81,7 +93,7 @@ Partial Class StartForm
         Me.btnChiusura.Dock = System.Windows.Forms.DockStyle.Fill
         Me.btnChiusura.Location = New System.Drawing.Point(0, 0)
         Me.btnChiusura.Name = "btnChiusura"
-        Me.btnChiusura.Size = New System.Drawing.Size(438, 50)
+        Me.btnChiusura.Size = New System.Drawing.Size(442, 50)
         Me.btnChiusura.TabIndex = 1
         Me.btnChiusura.Text = "chiusura"
         Me.btnChiusura.UseFlatMode = Infragistics.Win.DefaultableBoolean.[True]
@@ -93,9 +105,9 @@ Partial Class StartForm
         '
         Me.UltraPanel1.ClientArea.Controls.Add(Me.btnChiusura)
         Me.UltraPanel1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.UltraPanel1.Location = New System.Drawing.Point(3, 297)
+        Me.UltraPanel1.Location = New System.Drawing.Point(1, 299)
         Me.UltraPanel1.Name = "UltraPanel1"
-        Me.UltraPanel1.Size = New System.Drawing.Size(438, 50)
+        Me.UltraPanel1.Size = New System.Drawing.Size(442, 50)
         Me.UltraPanel1.TabIndex = 2
         Me.UltraPanel1.Visible = False
         '
@@ -106,9 +118,9 @@ Partial Class StartForm
         '
         Me.UltraPanel2.ClientArea.Controls.Add(Me.ngrdVersionStart)
         Me.UltraPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.UltraPanel2.Location = New System.Drawing.Point(3, 16)
+        Me.UltraPanel2.Location = New System.Drawing.Point(1, 16)
         Me.UltraPanel2.Name = "UltraPanel2"
-        Me.UltraPanel2.Size = New System.Drawing.Size(438, 331)
+        Me.UltraPanel2.Size = New System.Drawing.Size(442, 333)
         Me.UltraPanel2.TabIndex = 3
         '
         'UltraGroupBox1
@@ -123,16 +135,6 @@ Partial Class StartForm
         Me.UltraGroupBox1.TabIndex = 4
         Me.UltraGroupBox1.Text = "versioni / aziende"
         '
-        'TtmExeVerBindingSource
-        '
-        Me.TtmExeVerBindingSource.DataMember = "TtmExeVer"
-        Me.TtmExeVerBindingSource.DataSource = Me.AbsDataSet
-        '
-        'AbsDataSet
-        '
-        Me.AbsDataSet.DataSetName = "AbsDataSet"
-        Me.AbsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'TtmExeVerTableAdapter
         '
         Me.TtmExeVerTableAdapter.ClearBeforeFill = True
@@ -143,6 +145,7 @@ Partial Class StartForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(444, 350)
         Me.Controls.Add(Me.UltraGroupBox1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -150,14 +153,14 @@ Partial Class StartForm
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
         CType(Me.ngrdVersionStart, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.UltraPanel1.ClientArea.ResumeLayout(False)
         Me.UltraPanel1.ResumeLayout(False)
         Me.UltraPanel2.ClientArea.ResumeLayout(False)
         Me.UltraPanel2.ResumeLayout(False)
         CType(Me.UltraGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.UltraGroupBox1.ResumeLayout(False)
-        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
