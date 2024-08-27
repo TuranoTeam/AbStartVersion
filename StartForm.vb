@@ -12,6 +12,8 @@ Public Class StartForm
     Dim _UserName As String = "1632033@aruba.it"
     Dim _Password As String = "Arubolina2021"
     Dim VersioneAggiornata As Boolean = False
+    Dim AggiornamentoDisponibile As Boolean = False
+    Dim Apertura As Boolean = True
     Public Sub New()
 
         ' La chiamata è richiesta dalla finestra di progettazione.
@@ -53,6 +55,7 @@ Public Class StartForm
 
         TtmExeVerTableAdapter.Connection = New SqlClient.SqlConnection(ConnectionSting)
         Me.TtmExeVerTableAdapter.Fill(Me.AbsDataSet.TtmExeVer, SitoEsecuzione)
+
         '   MsgBox(Application.StartupPath)
         If System.IO.File.Exists(Application.StartupPath.Replace("bin\Debug", "Resources") & "\Abacus.isl") Then
             Infragistics.Win.AppStyling.StyleManager.Load(Application.StartupPath.Replace("bin\Debug", "Resources") & "\Abacus.isl")
@@ -72,6 +75,8 @@ Public Class StartForm
         Next
         If ngrdVersionStart.Rows.Count = 1 Then
             LanciaExe(ngrdVersionStart.Rows(0))
+        Else
+            Apertura = False
         End If
     End Sub
     Dim versione As String = ""
@@ -89,11 +94,18 @@ Public Class StartForm
                     ScaricaVersione()
                     versione = System.IO.File.ReadAllText(Rg.Cells("TverVersionPath").Text.Trim)
                     If CInt(versioneOL) > CInt(versione) Then
-                        Me.Text = "downloading new version " & versioneOL & "......"
-                        ScaricaAggiornamento()
-                        AggiornaVersioneAziende()
+                        If Not Apertura Then
+                            Me.Text = "downloading new version " & versioneOL & "......"
+                            ScaricaAggiornamento()
+                            AggiornaVersioneAziende()
+                            VersioneAggiornata = True
+                            AggiornamentoDisponibile = False
+                        Else
+                            AggiornamentoDisponibile = True
+                            VersioneAggiornata = False
+                        End If
                     Else
-                        Me.Text = "local version is up to date starting ABACUS......"
+                            Me.Text = "local version is up to date starting ABACUS......"
                         VersioneAggiornata = True
                     End If
                 End If
@@ -110,17 +122,27 @@ Public Class StartForm
         End If
 
         If NxaNvl(versioneOL).Trim <> String.Empty AndAlso NxaNvl(versioneOL).Trim.Length > 4 Then
-            Me.Text = "Abacus " & versioneOL.Substring(0, 1) & "." & versioneOL.Substring(1, 2) & "." & versioneOL.Substring(3) & " (" & Environ("USERNAME") & ")"
+            If AggiornamentoDisponibile Then
+                Me.Text = "Abacus new version " & versioneOL.Substring(0, 1) & "." & versioneOL.Substring(1, 2) & "." & versioneOL.Substring(3) & " (" & Environ("USERNAME") & ")"
+            Else
+                Me.Text = "Abacus " & versioneOL.Substring(0, 1) & "." & versioneOL.Substring(1, 2) & "." & versioneOL.Substring(3) & " (" & Environ("USERNAME") & ")"
+            End If
         End If
 
-        If NxaNvl(AbacusExePath).Trim <> String.Empty Then
-            Try
-                Process.Start(AbacusExePath)
-            Catch ex As Exception
-                MsgBox("esecuzione " & NxaNvl(Rg.Cells("TverDes").Value).Trim & " non riuscita - " & ex.Message)
-            End Try
+        If Apertura And AggiornamentoDisponibile Then
+            ' prima apertura con aggiornamento disponibile 
+            Apertura = False
         Else
-            MsgBox("percorso eseguibile vuoto !")
+            Apertura = False
+            If NxaNvl(AbacusExePath).Trim <> String.Empty Then
+                Try
+                    Process.Start(AbacusExePath)
+                Catch ex As Exception
+                    MsgBox("esecuzione " & NxaNvl(Rg.Cells("TverDes").Value).Trim & " non riuscita - " & ex.Message)
+                End Try
+            Else
+                MsgBox("percorso eseguibile vuoto !")
+            End If
         End If
 
     End Sub
@@ -154,6 +176,7 @@ Public Class StartForm
             .HostName = _HostName
             .UserName = _UserName
             .Password = _Password
+            .TimeoutInMilliseconds = 50000
         End With
         Try
             Using session As Session = New Session()
@@ -212,4 +235,10 @@ Public Class StartForm
             NxaNvlNum = wNum
         End If
     End Function
+
+    Private Sub StartForm_Activated(sender As Object, e As EventArgs) Handles Me.Activated
+        'If ngrdVersionStart.Rows.Count = 1 Then
+        '    LanciaExe(ngrdVersionStart.Rows(0))
+        'End If
+    End Sub
 End Class
