@@ -7,6 +7,7 @@ Imports WinSCP
 Public Class StartForm
     Dim INIPath As String = Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments).Trim & "\Abacus\abacus.ini"
     Dim ConnectionSting As String = "Data Source=~DATASOURCE~;Initial Catalog=~INITIALCATALOG~;User ID=~USER~;Password=~PASSWORD~;TrustServerCertificate=True"
+    Dim SitoEsecuzione As String = "."
     Dim _HostName As String = "ftp.canella.vr.it"
     Dim _UserName As String = "1632033@aruba.it"
     Dim _Password As String = "Arubolina2021"
@@ -21,11 +22,11 @@ Public Class StartForm
     End Sub
 
     Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'My.Settings.C5B05_StrutturaCommesse
-        'Me.ControlBox = False
-        Me.Text = String.Empty
+
+        Me.Text = "(" & Environ("USERNAME") & ")"
 
         Dim param As String()
+
         Try
             param = IO.File.ReadAllLines(INIPath)
 
@@ -42,14 +43,16 @@ Public Class StartForm
                 If str.Contains("INITIALCATALOG=") Then
                     ConnectionSting = ConnectionSting.Replace("~INITIALCATALOG~", str.Replace("INITIALCATALOG=", ""))
                 End If
+                If str.Contains("SITOESECUZIONE=") Then
+                    SitoEsecuzione = str.Replace("SITOESECUZIONE=", "")
+                End If
             Next
         Catch ex As Exception
-            MsgBox("ini non trovato o in formato non valido")
+            MsgBox("ini non trovato o in formato non valido " & ex.Message)
         End Try
 
-        Me.Text = ""
         TtmExeVerTableAdapter.Connection = New SqlClient.SqlConnection(ConnectionSting)
-        Me.TtmExeVerTableAdapter.Fill(Me.AbsDataSet.TtmExeVer)
+        Me.TtmExeVerTableAdapter.Fill(Me.AbsDataSet.TtmExeVer, SitoEsecuzione)
         '   MsgBox(Application.StartupPath)
         If System.IO.File.Exists(Application.StartupPath.Replace("bin\Debug", "Resources") & "\Abacus.isl") Then
             Infragistics.Win.AppStyling.StyleManager.Load(Application.StartupPath.Replace("bin\Debug", "Resources") & "\Abacus.isl")
@@ -67,20 +70,24 @@ Public Class StartForm
                 col.Hidden = True
             End If
         Next
-
+        If ngrdVersionStart.Rows.Count = 1 Then
+            LanciaExe(ngrdVersionStart.Rows(0))
+        End If
     End Sub
     Dim versione As String = ""
     Dim versioneOL As String = "0"
     Dim AbacusExePath As String = ""
     Private Sub ngrdVersionStart_ClickCellButton(sender As Object, e As CellEventArgs) Handles ngrdVersionStart.ClickCellButton
-
-        AbacusExePath = e.Cell.Row.Cells("TverExePath").Text.Trim
+        LanciaExe(e.Cell.Row)
+    End Sub
+    Private Sub LanciaExe(Rg As UltraGridRow)
+        AbacusExePath = NxaNvl(Rg.Cells("TverExePath").Value).Trim
 
         If Not VersioneAggiornata Then
-            If e.Cell.Row.Cells("TverVersionPath").Text.Trim.Length > 0 Then
-                If System.IO.File.Exists(e.Cell.Row.Cells("TverVersionPath").Text.Trim) Then
+            If NxaNvl(Rg.Cells("TverVersionPath").Value).Trim.Length > 0 Then
+                If System.IO.File.Exists(Rg.Cells("TverVersionPath").Text.Trim) Then
                     ScaricaVersione()
-                    versione = System.IO.File.ReadAllText(e.Cell.Row.Cells("TverVersionPath").Text.Trim)
+                    versione = System.IO.File.ReadAllText(Rg.Cells("TverVersionPath").Text.Trim)
                     If CInt(versioneOL) > CInt(versione) Then
                         Me.Text = "downloading new version " & versioneOL & "......"
                         ScaricaAggiornamento()
@@ -93,11 +100,29 @@ Public Class StartForm
             End If
         End If
 
-        System.IO.File.Copy(e.Cell.Row.Cells("TverIniPath").Text.Trim & "\Abacus.ini", Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments).Trim & "\Abacus\Abacus.ini", True)
+        ' necessario solo in caso di più aziende gestite in DB differenti
+        If NxaNvl(Rg.Cells("TverIniPath").Text).Trim <> String.Empty Then
+            Try
+                System.IO.File.Copy(Rg.Cells("TverIniPath").Text.Trim & "\Abacus.ini", Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments).Trim & "\Abacus\Abacus.ini", True)
+            Catch ex As Exception
+                MsgBox("cambio azienda non riuscito - " & ex.Message)
+            End Try
+        End If
 
-        Process.Start(AbacusExePath)
+        If NxaNvl(versioneOL).Trim <> String.Empty AndAlso NxaNvl(versioneOL).Trim.Length > 4 Then
+            Me.Text = "Abacus " & versioneOL.Substring(0, 1) & "." & versioneOL.Substring(1, 2) & "." & versioneOL.Substring(3) & " (" & Environ("USERNAME") & ")"
+        End If
 
-        Me.Text = "Abacus " & versioneOL.Substring(0, 1) & "." & versioneOL.Substring(1, 2) & "." & versioneOL.Substring(3)
+        If NxaNvl(AbacusExePath).Trim <> String.Empty Then
+            Try
+                Process.Start(AbacusExePath)
+            Catch ex As Exception
+                MsgBox("esecuzione " & NxaNvl(Rg.Cells("TverDes").Value).Trim & " non riuscita - " & ex.Message)
+            End Try
+        Else
+            MsgBox("percorso eseguibile vuoto !")
+        End If
+
     End Sub
 
     Dim exeFTP As String = ""
@@ -143,7 +168,7 @@ Public Class StartForm
             End Using
 
         Catch ex As Exception
-            MsgBox("file versione non trovato")
+            MsgBox("file versione non trovato " & ex.Message)
         End Try
 
     End Sub
@@ -167,9 +192,24 @@ Public Class StartForm
                 session.GetFiles("/canella.vr.it/Deposito/AB_NEW/*", AbacusExeFolder & "\*").Check()
             End Using
         Catch ex As Exception
-            MsgBox("aggiornamento non riuscito")
+            MsgBox("aggiornamento non riuscito  " & ex.Message)
         End Try
 
-
     End Sub
+    Public Shared Function NxaNvl(ByVal wStringa As Object) As String
+        If IsDBNull(wStringa) OrElse wStringa Is Nothing Then
+            NxaNvl = ""
+        Else
+            NxaNvl = wStringa.ToString
+        End If
+
+    End Function
+
+    Public Shared Function NxaNvlNum(ByVal wNum As Object) As Object
+        If IsDBNull(wNum) OrElse wNum Is Nothing OrElse (TypeOf (wNum) Is String AndAlso CStr(wNum).Trim.Length = 0) Then
+            NxaNvlNum = 0
+        Else
+            NxaNvlNum = wNum
+        End If
+    End Function
 End Class
