@@ -24,7 +24,7 @@ Public Class StartForm
     End Sub
 
     Private Sub StartForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'MsgBox("load")
         Me.Text = "(" & Environ("USERNAME") & ")"
 
         Dim param As String()
@@ -52,9 +52,10 @@ Public Class StartForm
         Catch ex As Exception
             MsgBox("ini non trovato o in formato non valido " & ex.Message)
         End Try
-
+        ' MsgBox("lette ini")
         TtmExeVerTableAdapter.Connection = New SqlClient.SqlConnection(ConnectionSting)
         Me.TtmExeVerTableAdapter.Fill(Me.AbsDataSet.TtmExeVer, SitoEsecuzione)
+        ' MsgBox("lette tabe")
 
         '   MsgBox(Application.StartupPath)
         If System.IO.File.Exists(Application.StartupPath.Replace("bin\Debug", "Resources") & "\Abacus.isl") Then
@@ -63,6 +64,7 @@ Public Class StartForm
             Infragistics.Win.AppStyling.StyleManager.Load(Application.StartupPath & "\External\Abacus.isl")
         End If
         ngrdVersionStart.Text = ""
+        '   MsgBox("lette isl")
         For Each col As Infragistics.Win.UltraWinGrid.UltraGridColumn In ngrdVersionStart.DisplayLayout.Bands(0).Columns
             If col.Key.ToUpper = "TVERDES" Then
                 col.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.Button
@@ -73,6 +75,7 @@ Public Class StartForm
                 col.Hidden = True
             End If
         Next
+        ' MsgBox("lancio")
         If ngrdVersionStart.Rows.Count = 1 Then
             LanciaExe(ngrdVersionStart.Rows(0))
         Else
