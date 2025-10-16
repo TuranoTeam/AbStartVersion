@@ -24,50 +24,53 @@ Partial Class StartForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim UltraGridBand1 As Infragistics.Win.UltraWinGrid.UltraGridBand = New Infragistics.Win.UltraWinGrid.UltraGridBand("TtmExeVer", -1)
-        Dim UltraGridColumn28 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverCod_Id")
-        Dim UltraGridColumn31 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverAttivo")
-        Dim UltraGridColumn29 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverDes")
-        Dim UltraGridColumn30 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverIniPath")
-        Dim UltraGridColumn32 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverExePath")
-        Dim UltraGridColumn1 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverVersionPath")
-        Dim UltraGridColumn33 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertDate")
-        Dim UltraGridColumn34 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertUser")
-        Dim UltraGridColumn35 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateDate")
-        Dim UltraGridColumn36 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateUser")
+        Dim UltraGridColumn12 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverCod_Id")
+        Dim UltraGridColumn13 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverAttivo")
+        Dim UltraGridColumn25 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverDes")
+        Dim UltraGridColumn26 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverIniPath")
+        Dim UltraGridColumn27 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverExePath")
+        Dim UltraGridColumn28 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverVersionPath")
+        Dim UltraGridColumn29 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverSito")
+        Dim UltraGridColumn30 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertDate")
+        Dim UltraGridColumn31 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverInsertUser")
+        Dim UltraGridColumn32 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateDate")
+        Dim UltraGridColumn33 As Infragistics.Win.UltraWinGrid.UltraGridColumn = New Infragistics.Win.UltraWinGrid.UltraGridColumn("TverUpdateUser")
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(StartForm))
         Me.ngrdVersionStart = New Infragistics.Win.UltraWinGrid.UltraGrid()
-        Me.TtmExeVerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.AbsDataSet = New AbStart.AbsDataSet()
         Me.btnChiusura = New Infragistics.Win.Misc.UltraButton()
         Me.UltraPanel1 = New Infragistics.Win.Misc.UltraPanel()
         Me.UltraPanel2 = New Infragistics.Win.Misc.UltraPanel()
         Me.UltraGroupBox1 = New Infragistics.Win.Misc.UltraGroupBox()
+        Me.TtmExeVerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.AbsDataSet = New AbStart.AbsDataSet()
         Me.TtmExeVerTableAdapter = New AbStart.AbsDataSetTableAdapters.TtmExeVerTableAdapter()
+        Me.TtmExeVer_ParametriTableAdapter = New AbStart.AbsDataSetTableAdapters.TtmExeVer_ParametriTableAdapter()
         CType(Me.ngrdVersionStart, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.UltraPanel1.ClientArea.SuspendLayout()
         Me.UltraPanel1.SuspendLayout()
         Me.UltraPanel2.ClientArea.SuspendLayout()
         Me.UltraPanel2.SuspendLayout()
         CType(Me.UltraGroupBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.UltraGroupBox1.SuspendLayout()
+        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ngrdVersionStart
         '
         Me.ngrdVersionStart.DataSource = Me.TtmExeVerBindingSource
-        UltraGridColumn28.Header.VisiblePosition = 0
-        UltraGridColumn31.Header.VisiblePosition = 3
-        UltraGridColumn29.Header.VisiblePosition = 1
-        UltraGridColumn30.Header.VisiblePosition = 2
-        UltraGridColumn32.Header.VisiblePosition = 4
-        UltraGridColumn1.Header.VisiblePosition = 5
-        UltraGridColumn33.Header.VisiblePosition = 6
-        UltraGridColumn34.Header.VisiblePosition = 7
-        UltraGridColumn35.Header.VisiblePosition = 8
-        UltraGridColumn36.Header.VisiblePosition = 9
-        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn28, UltraGridColumn31, UltraGridColumn29, UltraGridColumn30, UltraGridColumn32, UltraGridColumn1, UltraGridColumn33, UltraGridColumn34, UltraGridColumn35, UltraGridColumn36})
+        UltraGridColumn12.Header.VisiblePosition = 0
+        UltraGridColumn13.Header.VisiblePosition = 3
+        UltraGridColumn25.Header.VisiblePosition = 1
+        UltraGridColumn26.Header.VisiblePosition = 2
+        UltraGridColumn27.Header.VisiblePosition = 4
+        UltraGridColumn28.Header.VisiblePosition = 5
+        UltraGridColumn29.Header.VisiblePosition = 6
+        UltraGridColumn30.Header.VisiblePosition = 7
+        UltraGridColumn31.Header.VisiblePosition = 8
+        UltraGridColumn32.Header.VisiblePosition = 9
+        UltraGridColumn33.Header.VisiblePosition = 10
+        UltraGridBand1.Columns.AddRange(New Object() {UltraGridColumn12, UltraGridColumn13, UltraGridColumn25, UltraGridColumn26, UltraGridColumn27, UltraGridColumn28, UltraGridColumn29, UltraGridColumn30, UltraGridColumn31, UltraGridColumn32, UltraGridColumn33})
         Me.ngrdVersionStart.DisplayLayout.BandsSerializer.Add(UltraGridBand1)
         Me.ngrdVersionStart.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ngrdVersionStart.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -76,16 +79,6 @@ Partial Class StartForm
         Me.ngrdVersionStart.Size = New System.Drawing.Size(442, 333)
         Me.ngrdVersionStart.TabIndex = 0
         Me.ngrdVersionStart.Text = "ngrdVersionStart"
-        '
-        'TtmExeVerBindingSource
-        '
-        Me.TtmExeVerBindingSource.DataMember = "TtmExeVer"
-        Me.TtmExeVerBindingSource.DataSource = Me.AbsDataSet
-        '
-        'AbsDataSet
-        '
-        Me.AbsDataSet.DataSetName = "AbsDataSet"
-        Me.AbsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'btnChiusura
         '
@@ -135,9 +128,23 @@ Partial Class StartForm
         Me.UltraGroupBox1.TabIndex = 4
         Me.UltraGroupBox1.Text = "versioni / aziende"
         '
+        'TtmExeVerBindingSource
+        '
+        Me.TtmExeVerBindingSource.DataMember = "TtmExeVer"
+        Me.TtmExeVerBindingSource.DataSource = Me.AbsDataSet
+        '
+        'AbsDataSet
+        '
+        Me.AbsDataSet.DataSetName = "AbsDataSet"
+        Me.AbsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'TtmExeVerTableAdapter
         '
         Me.TtmExeVerTableAdapter.ClearBeforeFill = True
+        '
+        'TtmExeVer_ParametriTableAdapter
+        '
+        Me.TtmExeVer_ParametriTableAdapter.ClearBeforeFill = True
         '
         'StartForm
         '
@@ -153,14 +160,14 @@ Partial Class StartForm
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
         CType(Me.ngrdVersionStart, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.UltraPanel1.ClientArea.ResumeLayout(False)
         Me.UltraPanel1.ResumeLayout(False)
         Me.UltraPanel2.ClientArea.ResumeLayout(False)
         Me.UltraPanel2.ResumeLayout(False)
         CType(Me.UltraGroupBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.UltraGroupBox1.ResumeLayout(False)
+        CType(Me.TtmExeVerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AbsDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -173,4 +180,5 @@ Partial Class StartForm
     Friend WithEvents UltraPanel1 As Infragistics.Win.Misc.UltraPanel
     Friend WithEvents UltraPanel2 As Infragistics.Win.Misc.UltraPanel
     Friend WithEvents UltraGroupBox1 As Infragistics.Win.Misc.UltraGroupBox
+    Friend WithEvents TtmExeVer_ParametriTableAdapter As AbsDataSetTableAdapters.TtmExeVer_ParametriTableAdapter
 End Class

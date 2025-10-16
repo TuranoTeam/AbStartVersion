@@ -8,9 +8,10 @@ Public Class StartForm
     Dim INIPath As String = Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments).Trim & "\Abacus\abacus.ini"
     Dim ConnectionSting As String = "Data Source=~DATASOURCE~;Initial Catalog=~INITIALCATALOG~;User ID=~USER~;Password=~PASSWORD~;TrustServerCertificate=True"
     Dim SitoEsecuzione As String = "."
-    Dim _HostName As String = "ftp.canella.vr.it"
-    Dim _UserName As String = "1632033@aruba.it"
-    Dim _Password As String = "Arubolina2021"
+    Dim ChiaveParametri As String = "PAR"
+    Dim _HostName As String = "H"
+    Dim _UserName As String = "U"
+    Dim _Password As String = "P"
     Dim VersioneAggiornata As Boolean = False
     Dim AggiornamentoDisponibile As Boolean = False
     Dim Apertura As Boolean = True
@@ -48,12 +49,24 @@ Public Class StartForm
                 If str.Contains("SITOESECUZIONE=") Then
                     SitoEsecuzione = str.Replace("SITOESECUZIONE=", "")
                 End If
+                If str.Contains("CHIAVEPARAMETRI=") Then
+                    ChiaveParametri = str.Replace("CHIAVEPARAMETRI=", "")
+                End If
             Next
         Catch ex As Exception
             MsgBox("ini non trovato o in formato non valido " & ex.Message)
         End Try
         ' MsgBox("lette ini")
         TtmExeVerTableAdapter.Connection = New SqlClient.SqlConnection(ConnectionSting)
+        TtmExeVer_ParametriTableAdapter.Connection = New SqlClient.SqlConnection(ConnectionSting)
+
+        Me.TtmExeVer_ParametriTableAdapter.Fill(Me.AbsDataSet.TtmExeVer_Parametri, ChiaveParametri)
+        For Each drw As DataRow In AbsDataSet.TtmExeVer_Parametri.Rows
+            _HostName = NxaNvl(drw("TverSito")).Trim
+            _UserName = NxaNvl(drw("TverUID")).Trim
+            _Password = NxaNvl(drw("TverPWD")).Trim
+        Next
+
         Me.TtmExeVerTableAdapter.Fill(Me.AbsDataSet.TtmExeVer, SitoEsecuzione)
         ' MsgBox("lette tabe")
 
